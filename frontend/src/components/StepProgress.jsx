@@ -2,7 +2,7 @@ import React from 'react';
 import './StepProgress.css';
 
 const StepProgress = ({ currentStep }) => {
-  const steps = ['Prompt', 'Images', 'Summary'];
+  const steps = ['Prompt', 'Hashtag', 'Summary'];
 
   return (
     <div className="progress-container">

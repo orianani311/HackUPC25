@@ -1,0 +1,47 @@
+.hashtag-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    color: white;
+  }
+  
+  .hashtag-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hashtag-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 16px;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+  
+  .hashtag-button {
+    padding: 12px 20px;
+    border: 2px solid white;
+    border-radius: 999px;
+    background: #222;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .hashtag-button:hover {
+    background-color: white;
+    color: black;
+    transform: scale(1.05);
+  }
+  
+  .hashtag-button.selected {
+    background-color: #00e0ff;
+    color: black;
+    border-color: #00e0ff;
+    transform: scale(1.08);
+  }
+  

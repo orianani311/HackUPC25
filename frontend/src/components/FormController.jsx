@@ -77,44 +77,8 @@ export default function FormController() {
         </>
       )}
 
-{step === 1 && (
-  <div className="hashtag-selector">
-    <h2 style={{ color: 'white', marginBottom: '1rem' }}>Pick 3 Hashtags</h2>
-    <div className="hashtag-grid">
-      {['#foodie', '#adventure', '#beach', '#culture', '#nightlife', '#nature'].map(tag => (
-        <button
-          key={tag}
-          className={`hashtag-card ${hashtags.includes(tag) ? 'selected' : ''}`}
-          onClick={() => {
-            setHashtags(prev =>
-              prev.includes(tag)
-                ? prev.filter(t => t !== tag)
-                : prev.length < 3
-                ? [...prev, tag]
-                : prev
-            );
-          }}
-        >
-          {tag}
-        </button>
-      ))}
-    </div>
-    <button
-      style={{
-        ...buttonStyle,
-        marginTop: '2rem',
-        opacity: hashtags.length === 3 ? 1 : 0.4,
-        pointerEvents: hashtags.length === 3 ? 'auto' : 'none'
-      }}
-      onClick={() => setStep(2)}
-    >
-      Next
-    </button>
-  </div>
-)}
-
-      {/* STEP 2: Budget selection (Placeholder) */}
-      {step === 2 && (
+    {/* STEP 2: Budget selection (Placeholder) */}
+      {step === 1 && (
       <HashtagSelector
         selected={hashtags}
         onSelect={setHashtags}

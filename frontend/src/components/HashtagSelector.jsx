@@ -1,6 +1,7 @@
 // HashtagSelector.jsx
 import React from 'react';
 import './CardStyles.css';
+import './HashtagSelector.css';
 
 const HASHTAGS = ['#foodie', '#adventure', '#beach', '#culture', '#nightlife', '#nature'];
 
@@ -16,11 +17,11 @@ export default function HashtagSelector({ selected, onSelect, onNext }) {
   return (
     <div className="hashtag-selector">
       <h2 className="hashtag-title">Pick 3 Hashtags</h2>
-      <div className="hashtag-list">
-        {HASHTAGS.map(tag => (
+      <div className="hashtag-grid">
+        {HASHTAGS.map((tag) => (
           <button
             key={tag}
-            className={`hashtag-pill ${selected.includes(tag) ? 'selected' : ''}`}
+            className={`hashtag-button ${selected.includes(tag) ? 'selected' : ''}`}
             onClick={() => toggle(tag)}
           >
             {tag}
