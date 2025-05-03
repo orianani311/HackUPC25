@@ -1,0 +1,70 @@
+.form-wrapper {
+    height: 100vh;
+    width: 100vw;
+    background-color: #111;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+  }
+  
+  .white-card {
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+    padding: 16px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .prompt-card {
+    font-size: 1.25rem;
+    width: 300px;
+    margin-bottom: 40px;
+  }
+  
+  .card-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  
+  .image-card {
+    width: 180px;
+    height: 240px;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  
+  .image-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .image-card.selected {
+    border: 3px solid #00e0ff;
+    transform: scale(1.05);
+  }
+  
+  .submit-button {
+    background-color: white;
+    color: black;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .submit-button:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+  }
+  

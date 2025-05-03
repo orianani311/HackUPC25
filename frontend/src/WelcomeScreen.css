@@ -1,0 +1,108 @@
+/* WelcomeScreen.css */
+
+.welcome-container {
+  height: 100vh;
+  background-color: #000;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  padding: 2rem;
+}
+
+.card-stack {
+  position: relative;
+  width: 300px; /* adjust if needed */
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.card {
+  position: absolute;
+  width: 220px;
+  height: 300px;
+  border-radius: 10px;
+  padding: 2rem;
+  font-weight: bold;
+  box-shadow: 0px 4px 20px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.white {
+  background-color: white;
+  color: black;
+}
+
+.black {
+  background-color: black;
+  color: white;
+  z-index: 10;
+}
+
+.card:nth-child(1) {
+  transform: rotate(-20deg);
+  top: 10px;
+  left: 0%;
+}
+
+.card:nth-child(2) {
+  transform: rotate(-7deg);
+  top: 0;
+  left: 15%;
+}
+
+.card:nth-child(3) {
+  transform: rotate(20deg);
+  top: 10px;
+  left: 30%;
+}
+
+.card:nth-child(4) {
+  top: -10px;
+  left: 15%;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+   margin-top: 3rem;  /* ⬅️ Add this line */
+  margin-bottom: 22px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  max-width: 450px;
+  line-height: 1.4;
+  color: #ccc;
+}
+
+.start-button {
+  margin-top: 2rem;
+  padding: 0.8rem 1.5rem;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.start-button:hover {
+  background-color: #ddd;
+}
+
+.text-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2.5rem;
+}
