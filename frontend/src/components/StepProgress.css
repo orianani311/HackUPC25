@@ -1,0 +1,60 @@
+.progress-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 600px; /* Make this as wide as you want the full bar */
+    margin: 0 auto 2rem auto;
+    padding: 0 1rem;
+    position: relative;
+  }
+  
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex: 1;
+  }
+  
+  .circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #666;
+    color: black;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    transition: all 0.3s ease;
+  }
+  
+  .step.active .circle {
+    transform: scale(1.4);
+    background: white;
+    color: black;
+  }
+  
+  .label {
+    margin-top: 8px;
+    font-size: 0.75rem;
+    text-align: center;
+    color: white;
+  }
+  
+  .bar {
+    position: absolute;
+    top: 14px; /* aligns with circle vertical center */
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    z-index: 1;
+  }
+  
+  .step:last-child .bar {
+    display: none;
+  }
+  

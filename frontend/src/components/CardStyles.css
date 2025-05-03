@@ -1,0 +1,202 @@
+.form-wrapper {
+  background-color: #111;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 30px;
+}
+
+.card-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 900px;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 0.2s;
+}
+
+.white-card, .black-card, .cah-card {
+  width: 220px;
+  height: 300px;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.black {
+  background: black;
+  color: white;
+  border: 2px solid white;
+}
+
+.white-card {
+  background: white;
+  color: black;
+  border: 1px solid #ccc;
+}
+
+.image-option {
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  border-radius: 8px;
+  width: 130px;
+  height: 150px;
+  transition: transform 0.3s ease;
+}
+
+.image-option.selected {
+  transform: scale(1.06); /* gentle zoom */
+}
+
+.answer-card {
+  width: auto;
+  min-height: 120px;
+  padding: 12px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.black-card-animated {
+  transition: all 0.8s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  opacity: 1;
+}
+
+.black-card-animated.moved {
+  transform: translateY(-200px);
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.white-card-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  animation: fadeIn 0.6s ease-in-out forwards;
+}
+
+.white-card.answer-final {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: auto;
+  height: auto;
+  padding: 0;
+}
+
+
+.answer-composition {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: transparent;
+  padding: 4px;
+  margin-bottom: 6px;
+  flex-wrap: nowrap;
+}
+
+.answer-mini {
+  width: 60px;
+  height: 80px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hashtag-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.hashtag-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.hashtag-list {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 600px;
+  margin-bottom: 2rem;
+}
+
+.hashtag-pill {
+  background: #222;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 999px;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hashtag-pill:hover {
+  background: white;
+  color: black;
+}
+
+.hashtag-pill.selected {
+  background: #00e0ff;
+  color: black;
+  border-color: #00e0ff;
+  transform: scale(1.05);
+}
+
+.next-button {
+  background: white;
+  color: black;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.next-button.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.next-button.active:hover {
+  background: #00e0ff;
+  color: black;
+}

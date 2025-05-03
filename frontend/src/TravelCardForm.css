@@ -1,0 +1,63 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #111;
+  min-height: 100vh;
+  color: white;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.prompt-card {
+  width: 220px;
+  height: 300px;
+  background: black;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  max-width: 800px;
+  padding: 1rem;
+}
+
+.image-option {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.image-option:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #fff3;
+}
+
+.white-card-answer {
+  width: 300px;
+  min-height: 180px;
+  background: white;
+  color: black;
+  border-radius: 10px;
+  padding: 1rem;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(255,255,255,0.2);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
