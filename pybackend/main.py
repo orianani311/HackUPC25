@@ -1,19 +1,20 @@
 from fastapi import FastAPI
-from pybackend.routers import cards, game
+from fastapi.middleware.cors import CORSMiddleware
+from pybackend.routers import game
 
 
+app = FastAPI()
 
-app = FastAPI(
-    title="The Perfect Reunion",
-    description="Backend for the anonymous travel planning game",
-    version="1.0.0"
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-# Register routers
-app.include_router(cards.router)
 app.include_router(game.router)
 
-# Basic health check endpoint
 @app.get("/")
-def root():
-    return {"message": "The backend is running!"}
+def read_root():
+    return {"message": "Backend is running"}

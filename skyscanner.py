@@ -1,15 +1,23 @@
-import os
-from dotenv import load_dotenv
-import requests
-from datetime import datetime
 from random import choice
 
-load_dotenv()
+def suggest_destination(card):
+    mock_destinations = [
+        {"name": "Lisbon", "iata": "LIS", "price_eur": 95},
+        {"name": "Athens", "iata": "ATH", "price_eur": 120},
+        {"name": "Nice", "iata": "NCE", "price_eur": 110},
+        {"name": "Prague", "iata": "PRG", "price_eur": 85},
+        {"name": "Barcelona", "iata": "BCN", "price_eur": 130}
+    ]
 
-API_HOST = "skyscanner44.p.rapidapi.com"
-API_KEY = os.getenv("SKYSCANNER_API_KEY")
+    destination = choice(mock_destinations)
 
-HEADERS = {
-    "X-RapidAPI-Key": API_KEY,
-    "X-RapidAPI-Host": API_HOST
-}
+    return {
+        "destination": destination["name"],
+        "iata": destination["iata"],
+        "price_eur": destination["price_eur"],
+        "eco_friendly": card.eco_friendly,
+        "climate": card.climate,
+        "budget": card.budget,
+        "month": card.month
+    }
+
