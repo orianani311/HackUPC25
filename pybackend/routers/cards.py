@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from typing import List
-from pybackend.schemas.travel_card import TravelCardCreate, TravelCard
+from schemas.travel_card import TravelCard
+
 
 router = APIRouter(
     prefix="/cards",
