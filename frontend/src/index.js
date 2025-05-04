@@ -1,3 +1,4 @@
+console.log('Index.js is being executed')
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';

@@ -1,91 +1,106 @@
 .form-wrapper {
-  background-color: #111;
-  color: white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 20px;
-  gap: 30px;
-}
-
-.card-grid {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 900px;
-  opacity: 0;
-  animation: fadeIn 1s ease forwards;
-  animation-delay: 0.2s;
-}
-
-.white-card, .black-card, .cah-card {
-  width: 220px;
-  height: 300px;
-  padding: 16px;
-  border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  text-align: center;
-  transition: all 0.3s ease-in-out;
-}
-
-.black {
-  background: black;
-  color: white;
-  border: 2px solid white;
-}
-
-.white-card {
-  background: white;
-  color: black;
-  border: 1px solid #ccc;
-}
-
-.image-option {
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-  border-radius: 8px;
-  width: 130px;
-  height: 150px;
-  transition: transform 0.3s ease;
-}
-
-.image-option.selected {
-  transform: scale(1.06); /* gentle zoom */
-}
-
-.answer-card {
-  width: auto;
-  min-height: 120px;
-  padding: 12px;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: flex-start;
-}
-
-.black-card-animated {
-  transition: all 0.8s ease-in-out;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60vh;
-  opacity: 1;
-}
-
-.black-card-animated.moved {
-  transform: translateY(-200px);
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
-}
-
-.white-card-wrapper {
+    background-color: #111;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 30px;
+  }
+  
+  .card-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 900px;
+  }
+  
+  .white-card, .black-card, .cah-card {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0,0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .black {
+    background: black;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  .white-card {
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+  }
+  
+  .image-option {
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+  }
+  
+  .image-option.selected {
+    transform: scale(1.1); /* small, subtle zoom */
+  }
+  
+  
+  .answer-card {
+    width: auto;
+    min-height: 120px;
+    padding: 12px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .black-card-animated {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh; /* centers vertically in screen */
+    transition: all 0.8s ease-in-out;
+    opacity: 1;
+  }
+  
+  .black-card-animated {
+    transition: all 0.8s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    opacity: 1;
+  }
+  
+  .black-card-animated.moved {
+    transform: translateY(-200px);
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+  }
+  
+  
+  
+  .card-grid {
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 0.2s;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  .white-card-wrapper {
   display: flex;
   justify-content: center;
   margin-top: 40px;
@@ -93,213 +108,216 @@
 }
 
 .white-card.answer-final {
-  background: transparent;
-  border: none;
-  box-shadow: none;
+  width: 300px;
+  height: auto; /* Allow height to grow with content */
+  padding: 1rem;
+  background: white;
+  border-radius: 10px;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column; /* <-- STACK VERTICALLY */
   gap: 10px;
-  width: auto;
-  height: auto;
-  padding: 0;
-}
-
-
-.answer-composition {
-  display: flex;
-  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
-  gap: 4px;
-  background: transparent;
-  padding: 4px;
-  margin-bottom: 6px;
-  flex-wrap: nowrap;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
-.answer-mini {
-  width: 60px;
+.answer-image {
+  width: 90px;
   height: 80px;
   background-size: cover;
   background-position: center;
   border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease;
 }
-
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.hashtag-selector {
+.answer-composition {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.answer-mini {
+  width: 60px;
+  height: 70px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Button styling */
+.next-button {
+  background: #555;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: not-allowed;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+
+.next-button.disabled {
+  background-color: #555;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.next-button.active {
+  background: white;
+  color: black;
+  cursor: pointer;
+  opacity: 1;
+}
+
+/* Hashtag Circles */
+.hashtag-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 60px;
+  gap: 30px;
+  margin-top: 40px;
 }
 
-.hashtag-title {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  color: white;
-}
-
-.hashtag-list {
+.hashtag-grid {
   display: flex;
-  gap: 15px;
+  gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 600px;
-  margin-bottom: 2rem;
 }
 
-.hashtag-pill {
-  background: #222;
+.hashtag-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #333;
   color: white;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 999px;
+  font-weight: bold;
   border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.hashtag-pill:hover {
+.hashtag-circle.selected {
   background: white;
   color: black;
+  border: 2px solid #00d0ff;
 }
 
-.hashtag-pill.selected {
-  background: white;
-  color: #444;
-  border-color: white;
-  transform: scale(1.05);
-}
-
-.next-button {
-  background: white;
-  color: black;
-  padding: 0.7rem 1.5rem;
-  font-size: 1.1rem;
-  border-radius: 8px;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.next-button.disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.next-button.active:hover {
-  background: white;
-  color: #444;
-}
-
-
-.navigation-buttons {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0 2rem;
-  margin-top: 3rem;
-}
-
-.back-button,
-.next-button {
-  background: white;
-  color: black;
-  padding: 0.5rem 1.2rem;
-  border-radius: 6px;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.back-button:hover,
-.next-button.active:hover {
-  background: #f0f0f0;
-  color: #333;
-}
-
-.summary-card {
-  max-width: 700px;
-  background: #1a1a1a;
-  color: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-  text-align: center;
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-.summary-title {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: white;
-}
-
-.summary-section {
-  margin: 1.5rem 0;
-}
-
-.summary-images {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 1rem;
-}
-
-.summary-image {
-  width: 80px;
-  height: 100px;
-  border-radius: 8px;
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
-}
-
-.month-title {
-  font-size: 1.6rem;
-  margin-bottom: 1.5rem;
-  color: white;
-  text-align: center;
-}
 
 .month-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 10px;
   justify-content: center;
-  margin-bottom: 2.5rem;
+  margin-top: 20px;
 }
 
-.month-button {
+.month-circle {
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-radius: 999px;
+  border: 2px solid #ccc;
   background-color: #222;
   color: white;
-  border: 2px solid white;
-  border-radius: 999px;
-  padding: 10px 20px;
-  font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.month-button:hover {
-  background-color: white;
+.month-circle:hover {
+  background-color: #333;
+}
+
+.month-circle.selected {
+  background-color: #00e0ff;
+  border-color: #00e0ff;
   color: black;
 }
 
-.month-button.selected {
-  background-color: white;
-  color: black;
+.summary-card-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.summary-card {
+  width: 220px;
+  height: 300px;
+  background: white;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   font-weight: bold;
-  transform: scale(1.05);
+  text-align: center;
+}
+
+.summary-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.summary-image {
+  width: 100%;
+  height: 65%;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+}
+
+.summary-card-footer {
+  font-size: 0.9rem;
+  color: #333;
+  text-align: center;
+}
+
+.loading {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 900px;
+  padding: 2rem;
+  position: relative;
+}
+
+.nav-button {
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-button.left {
+  background: white;
+  color: black;
+}
+
+.nav-button.right {
+  background: black;
+  color: white;
 }

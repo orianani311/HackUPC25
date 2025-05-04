@@ -1,63 +1,45 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import './CardStyles.css';
 
-export default function SummaryCard({
-  selectedImages = [],
-  hashtags = [],
-  budget = 0,
-  months = []
-}) {
-  const [suggestions, setSuggestions] = useState([]);
-  const [loading, setLoading] = useState(true);
+const PEXELS_API_KEY = 'JldACPUW2cloqXQL3iQHc16EG6bA2SUCwfCcmKzUedzDnADPpSEzW2QF';
+const PEXELS_API_URL = 'https://api.pexels.com/v1/search?query=spain&per_page=2';
+const SKYSCANNER_API_KEY = 'sh967490139224896692439644109194';
+
+export default function SummaryCard() {
+  const [imageUrl, setImageUrl] = useState(null);
 
   useEffect(() => {
-    async function fetchDestinations() {
-      try {
-        const response = await fetch('http://localhost:8000/api/suggestions', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            images: selectedImages,
-            hashtags,
-            budget,
-            months,
-          }),
-        });
-
-        const data = await response.json();
-        setSuggestions(data.destinations || []);
-      } catch (error) {
-        console.error('Failed to fetch suggestions:', error);
-        setSuggestions([]);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchDestinations();
-  }, [selectedImages, hashtags, budget, months]);
+    fetch(PEXELS_API_URL, {
+      headers: {
+        Authorization: PEXELS_API_KEY,
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log('PEXELS response:', data);  
+        const photo = data.photos?.[0];
+        if (photo) {
+          setImageUrl(photo.src.large);
+        }
+      })
+      .catch(console.error);
+  }, []);
 
   return (
-    <div style={{ color: 'white', textAlign: 'center', marginTop: '4rem' }}>
-      <h2>🎉 Summary</h2>
-      <p><strong>Images:</strong> {selectedImages.length}</p>
-      <p><strong>Hashtags:</strong> {hashtags.join(', ') || '–'}</p>
-      <p><strong>Budget:</strong> €{budget || '–'}</p>
-      <p><strong>Months:</strong> {months.join(', ') || '–'}</p>
-
-      <h3 style={{ marginTop: '2rem' }}>🌍 Suggested Destinations:</h3>
-      {loading ? (
-        <p>Loading suggestions...</p>
-      ) : (
-        <ul style={{ listStyle: 'none', padding: 0 }}>
-          {suggestions.length > 0 ? (
-            suggestions.map((dest, idx) => (
-              <li key={idx} style={{ marginBottom: '0.5rem' }}>{dest}</li>
-            ))
-          ) : (
-            <p>No destinations found.</p>
-          )}
-        </ul>
-      )}
+    <div className="summary-card-wrapper">
+      <div className="summary-card">
+        <h3 className="summary-card-title">Your Destination</h3>
+        {imageUrl ? (
+          <div
+            className="summary-image"
+            style={{ backgroundImage: `url(${imageUrl})` }}
+          />
+        ) : (
+          <div className="loading">Loading image...</div>
+        )}
+        <p className="summary-card-footer">Based on your vibes ✈️</p>
+      </div>
     </div>
   );
 }

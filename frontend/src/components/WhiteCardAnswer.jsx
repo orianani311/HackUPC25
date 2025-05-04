@@ -1,24 +1,27 @@
 import React from 'react';
 import './CardStyles.css';
 
-export default function WhiteCardAnswer({ selectedImages }) {
-  if (selectedImages.length < 1) return null;
+export default function WhiteCardAnswer({ selectedImages, onNext }) {
+  const ready = selectedImages.length === 3;
 
   return (
     <div className="white-card-wrapper">
-      <div className="white-card answer-final">
+      <div className="answer-composition">
         {selectedImages.map((src, index) => (
-          <React.Fragment key={index}>
-            <div
-              className="answer-mini"
-              style={{ backgroundImage: `url(${src})` }}
-            />
-            {index < selectedImages.length - 1 && (
-              <span style={{ color: 'white', fontSize: '1.5rem', margin: '0 6px' }}>+</span>
-            )}
-          </React.Fragment>
+          <div
+            key={index}
+            className="answer-mini"
+            style={{ backgroundImage: `url(${src})` }}
+          />
         ))}
       </div>
+      <button
+        className={`next-button ${ready ? 'active' : 'disabled'}`}
+        onClick={ready ? onNext : null}
+        disabled={!ready}
+      >
+        Next
+      </button>
     </div>
   );
 }

@@ -1,27 +1,28 @@
-// FormController.jsx
 import React, { useState, useEffect } from 'react';
 import BlackCardPrompt from './BlackCardPrompt';
 import ImageChoiceGrid from './ImageChoiceGrid';
 import WhiteCardAnswer from './WhiteCardAnswer';
-import HashtagSelector from './HashtagSelector';
+import StepProgress from './StepProgress';
+import HashtagSelection from './HashtagSelection';
 import BudgetRangeSelector from './BudgetRangeSelector';
 import MonthClimateSelector from './MonthClimateSelector';
 import SummaryCard from './SummaryCard';
-import StepProgress from './StepProgress';
 import './CardStyles.css';
 
 export default function FormController() {
-  const [step, setStep] = useState(0);
-  const [selected, setSelected] = useState([]);
-  const [hashtags, setHashtags] = useState([]);
+  const [stage, setStage] = useState('intro'); // stages: intro → images → hashtags → budget → climate → summary
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [selectedHashtags, setSelectedHashtags] = useState([]);
   const [budget, setBudget] = useState(null);
   const [months, setMonths] = useState([]);
+
   const [blackCardMoved, setBlackCardMoved] = useState(false);
   const [blackCardHidden, setBlackCardHidden] = useState(false);
   const [showImages, setShowImages] = useState(false);
 
+  // Intro card animation
   useEffect(() => {
-    if (step !== 0) return;
+    if (stage !== 'intro') return;
     const moveTimeout = setTimeout(() => setBlackCardMoved(true), 2000);
     const hideTimeout = setTimeout(() => {
       setBlackCardHidden(true);
@@ -31,7 +32,7 @@ export default function FormController() {
       clearTimeout(moveTimeout);
       clearTimeout(hideTimeout);
     };
-  }, [step]);
+  }, [stage]);
 
   const buttonStyle = {
     background: 'white',
@@ -43,68 +44,70 @@ export default function FormController() {
     cursor: 'pointer',
   };
 
+  const stageOrder = ['intro', 'images', 'hashtags', 'budget', 'climate', 'summary'];
+  const currentStep = stageOrder.indexOf(stage);
+
   return (
     <div className="form-wrapper">
-      <StepProgress currentStep={step} />
+      <StepProgress currentStep={currentStep} />
 
-      {/* STEP 0: Image Selection */}
-      {step === 0 && (
+      {/* Intro screen with animation */}
+      {stage === 'intro' && (
         <>
           {!blackCardHidden && !blackCardMoved && (
             <div className="black-card-animated">
               <BlackCardPrompt text="Choose 3 images that reflect your vibe" />
             </div>
           )}
-          {!blackCardHidden && blackCardMoved && <div className="black-card-animated moved" />}
-          {showImages && (
-            <>
-              <ImageChoiceGrid onSelect={setSelected} max={3} />
-              <WhiteCardAnswer selectedImages={selected} />
-              <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', padding: '0 2rem', marginTop: '2rem' }}>
-                <button style={buttonStyle} onClick={() => window.history.back()}>Back</button>
-                {selected.length === 3 && (
-                  <button style={buttonStyle} onClick={() => setStep(1)}>Next</button>
-                )}
-              </div>
-            </>
+          {!blackCardHidden && blackCardMoved && (
+            <div className="black-card-animated moved" />
           )}
+          {showImages && setStage('images')}
         </>
       )}
 
-      {/* STEP 1: Hashtag Selection */}
-      {step === 1 && (
-        <HashtagSelector
-          selected={hashtags}
-          onSelect={setHashtags}
-          onNext={() => setStep(2)}
+      {/* Image selection stage */}
+      {stage === 'images' && (
+        <>
+          <ImageChoiceGrid onSelect={setSelectedImages} max={3} />
+          <WhiteCardAnswer
+            selectedImages={selectedImages}
+            onNext={() => setStage('hashtags')}
+          />
+        </>
+      )}
+
+      {/* Hashtag selection stage */}
+      {stage === 'hashtags' && (
+        <HashtagSelection
+          onSelect={setSelectedHashtags}
+          selected={selectedHashtags}
+          onNext={() => setStage('budget')}
         />
       )}
 
-      {/* STEP 2: Budget Selection */}
-      {step === 2 && (
+      {/* Budget selection stage */}
+      {stage === 'budget' && (
         <BudgetRangeSelector
-          onSelect={setBudget}
-          onNext={() => setStep(3)}
+          onNext={(value) => {
+            setBudget(value);
+            setStage('climate');
+          }}
         />
       )}
 
-      {/* STEP 3: Month Selection */}
-      {step === 3 && (
+      {/* Month/climate selection stage */}
+      {stage === 'climate' && (
         <MonthClimateSelector
-          onSelect={setMonths}
-          onNext={() => setStep(4)}
+          onNext={(value) => {
+            setMonths(value);
+            setStage('summary');
+          }}
         />
       )}
 
-      {/* STEP 4: Summary */}
-      {step === 4 && (
-        <SummaryCard
-          images={selected}
-          hashtags={hashtags}
-          budget={budget}
-          months={months}
-        />
-      )}
+      {/* Final summary screen */}
+      {stage === 'summary' && <SummaryCard />}
     </div>
   );
 }
