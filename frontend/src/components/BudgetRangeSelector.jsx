@@ -1,20 +1,30 @@
 // BudgetRangeSelector.jsx
 import React, { useState } from 'react';
+import './CardStyles.css';
 
-export default function BudgetRangeSelector({ onSelect, onNext }) {
+export default function BudgetRangeSelector({ onNext }) {
   const [budget, setBudget] = useState(1000);
   const [confirmed, setConfirmed] = useState(false);
 
+  const label = budget < 900 ? 'Low' : budget < 1500 ? 'Medium' : 'High';
+
   const handleChange = (e) => {
-    const value = parseInt(e.target.value);
-    setBudget(value);
+    setBudget(parseInt(e.target.value));
     setConfirmed(true);
-    onSelect(value);
+  };
+
+  const handleNext = () => {
+    if (confirmed && onNext) {
+      onNext(budget);
+    }
   };
 
   return (
     <div className="budget-selector">
       <h2>Select Your Budget</h2>
+      <div className="slider-label">
+        €{budget} - <span className="range-label">{label}</span>
+      </div>
       <input
         type="range"
         min="500"
@@ -23,10 +33,9 @@ export default function BudgetRangeSelector({ onSelect, onNext }) {
         value={budget}
         onChange={handleChange}
       />
-      <div>€{budget}</div>
       <button
         className={`next-button ${confirmed ? 'active' : 'disabled'}`}
-        onClick={onNext}
+        onClick={handleNext}
         disabled={!confirmed}
       >
         Next
