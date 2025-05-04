@@ -22,50 +22,52 @@ def get_access_token():
     response.raise_for_status()
     return response.json()["access_token"]
 
-def get_destination_inspiration(origin="FCO", max_price=200):
+def get_flight_offer(origin="FCO", destination="BCN", date="2025-06-10"):
     try:
-        print(f"✈️ Getting token and flight ideas from {origin} with €{max_price} max...")
         token = get_access_token()
-        print("✅ Token OK")
-
-        url = f"{BASE_URL}/v1/shopping/flight-destinations"
-        headers = {"Authorization": f"Bearer {token}"}
-        params = {
-            "origin": origin,
-            "maxPrice": max_price,
-            "currencyCode": "EUR"
+        url = f"{BASE_URL}/v2/shopping/flight-offers"
+        headers = {
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json"
         }
 
-        response = requests.get(url, headers=headers, params=params)
-        print("🛬 Amadeus API Response:", response.status_code, response.text)
+        payload = {
+            "currencyCode": "EUR",
+            "originDestinations": [
+                {
+                    "id": "1",
+                    "originLocationCode": origin,
+                    "destinationLocationCode": destination,
+                    "departureDateTimeRange": {
+                        "date": date
+                    }
+                }
+            ],
+            "travelers": [
+                {
+                    "id": "1",
+                    "travelerType": "ADULT"
+                }
+            ],
+            "sources": ["GDS"],
+            "searchCriteria": {
+                "maxFlightOffers": 1
+            }
+        }
+
+        response = requests.post(url, headers=headers, json=payload)
+        print("🎯 Response:", response.status_code, response.text)
         response.raise_for_status()
-
         data = response.json()
-        if not data.get("data"):
-            return {"error": "No destinations found"}
 
-        first = data["data"][0]
+        offer = data["data"][0]
         return {
-            "destination": first["destination"],
-            "price": first["price"]["total"],
-            "departureDate": first["departureDate"]
+            "price": offer["price"]["total"],
+            "destination": destination,
+            "origin": origin,
+            "date": date
         }
+
     except Exception as e:
-        print("❌ ERROR:", e)
-        raise e  # Let FastAPI return a 500 with log
-
-
-    response = requests.get(url, headers=headers, params=params)
-    response.raise_for_status()
-    data = response.json()
-
-    if not data.get("data"):
-        return {"error": "No destinations found"}
-
-    # Pick the first result for simplicity
-    first = data["data"][0]
-    return {
-        "destination": first["destination"],
-        "price": first["price"]["total"],
-        "departureDate": first["departureDate"]
-    }
+        print("❌ Amadeus Flight Offer Error:", e)
+        raise e

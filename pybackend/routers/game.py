@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from pybackend.schemas.travel_card import TravelCard
-from amadeus_client import get_destination_inspiration
+from amadeus_client import get_flight_offer
 
 router = APIRouter()
 
@@ -14,7 +14,9 @@ def suggest_destination(card: TravelCard):
     }
 
     max_price = budget_map.get(card.budget, 200)
-    result = get_destination_inspiration(origin="FCO", max_price=max_price)
+    #result = get_destination_inspiration(origin="FCO", max_price=max_price)
+    result = get_flight_offer(origin="FCO", destination="BCN", date="2025-06-10")
+
 
     return {
         "destination": result.get("destination"),
