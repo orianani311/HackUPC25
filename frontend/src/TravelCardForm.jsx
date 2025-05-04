@@ -110,15 +110,23 @@ export default function TravelCardForm() {
         </>
       )}
 
-      {step === 4 && result && (
-        <div className="white-card-answer">
-          <h2>🎉 Suggested Trip</h2>
+{step === 4 && (
+  <>
+    <div className="white-card-answer">
+      <h2>🎉 Suggested Trip</h2>
+      {result ? (
+        <>
           <p><strong>Destination:</strong> {result.destination}</p>
           <p><strong>Departure Date:</strong> {result.date}</p>
           <p><strong>Price:</strong> €{result.price}</p>
           <p><strong>Selected Hashtags:</strong> {result.hashtags.join(", ")}</p>
-        </div>
+        </>
+      ) : (
+        <p>❌ No result received from API</p>
       )}
+    </div>
+  </>
+)}
     </div>
   );
 }
