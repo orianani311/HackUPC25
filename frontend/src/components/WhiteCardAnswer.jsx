@@ -1,7 +1,7 @@
 import React from 'react';
 import './CardStyles.css';
 
-export default function WhiteCardAnswer({ selectedImages, onNext }) {
+export default function WhiteCardAnswer({ selectedImages, onNext, onBack }) {
   const ready = selectedImages.length === 3;
 
   return (
@@ -15,13 +15,35 @@ export default function WhiteCardAnswer({ selectedImages, onNext }) {
           />
         ))}
       </div>
-      <button
-        className={`next-button ${ready ? 'active' : 'disabled'}`}
-        onClick={ready ? onNext : null}
-        disabled={!ready}
+
+      <div
+        className="navigation-buttons"
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          width: '100%',
+          paddingRight: '2rem',
+          marginTop: '2rem',
+        }}
       >
-        Next
-      </button>
+        {onBack && (
+          <button
+            className="next-button"
+            style={{ marginRight: 'auto', marginLeft: '1rem' }}
+            onClick={onBack}
+          >
+            Back
+          </button>
+        )}
+        <button
+          className={`next-button ${ready ? 'active' : 'disabled'}`}
+          onClick={ready ? onNext : null}
+          disabled={!ready}
+          style={{ padding: '0.6rem 1.5rem' }}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }
