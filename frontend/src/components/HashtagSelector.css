@@ -39,9 +39,9 @@
   }
   
   .hashtag-button.selected {
-    background-color: #00e0ff;
+    background-color: #fcf88b;
     color: black;
-    border-color: #00e0ff;
+    border-color: #fcf88b;
     transform: scale(1.08);
   }
   

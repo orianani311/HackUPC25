@@ -17,6 +17,9 @@ export default function TravelCardForm() {
   const [selectedHashtags, setSelectedHashtags] = useState([]);
   const [result, setResult] = useState(null);
 
+  console.log("👣 Current step:", step);
+
+
   const toggleImage = (url) => {
     setSelectedImages((prev) =>
       prev.includes(url)
