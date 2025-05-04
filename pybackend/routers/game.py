@@ -1,29 +1,28 @@
 from fastapi import APIRouter
-from pybackend.schemas.travel_card import TravelCard
+from pydantic import BaseModel
 from amadeus_client import get_flight_offer
 
 router = APIRouter()
 
+class TravelCardInput(BaseModel):
+    images: list[str]
+    hashtags: list[str]
+
 @router.post("/api/suggest")
-def suggest_destination(card: TravelCard):
-    # You can adjust logic to map budget → price range
-    budget_map = {
-        "Low": 100,
-        "Medium": 200,
-        "High": 400
-    }
+def suggest_destination(card: TravelCardInput):
+    # Basic mapping of hashtags to destinations
+    if "#relax" in card.hashtags:
+        dest = "PMI"  # Palma de Mallorca
+    elif "#adventure" in card.hashtags:
+        dest = "REK"  # Reykjavik
+    elif "#culture" in card.hashtags:
+        dest = "FCO"  # Rome
+    else:
+        dest = "BCN"  # default to Barcelona
 
-    max_price = budget_map.get(card.budget, 200)
-    #result = get_destination_inspiration(origin="FCO", max_price=max_price)
-    result = get_flight_offer(origin="FCO", destination="BCN", date="2025-06-10")
-
-
+    result = get_flight_offer(origin="FCO", destination=dest, date="2025-06-10")
     return {
-        "destination": result.get("destination"),
-        "price_eur": result.get("price"),
-        "departure_date": result.get("departureDate"),
-        "month": card.month,
-        "climate": card.climate,
-        "eco_friendly": card.eco_friendly,
-        "budget": card.budget
+        **result,
+        "hashtags": card.hashtags,
+        "images": card.images
     }
