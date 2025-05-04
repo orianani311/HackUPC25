@@ -173,9 +173,9 @@
 }
 
 .hashtag-pill.selected {
-  background: #00e0ff;
-  color: black;
-  border-color: #00e0ff;
+  background: white;
+  color: #444;
+  border-color: white;
   transform: scale(1.05);
 }
 
@@ -197,6 +197,109 @@
 }
 
 .next-button.active:hover {
-  background: #00e0ff;
+  background: white;
+  color: #444;
+}
+
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 2rem;
+  margin-top: 3rem;
+}
+
+.back-button,
+.next-button {
+  background: white;
   color: black;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.back-button:hover,
+.next-button.active:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.summary-card {
+  max-width: 700px;
+  background: #1a1a1a;
+  color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.summary-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.summary-section {
+  margin: 1.5rem 0;
+}
+
+.summary-images {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.summary-image {
+  width: 80px;
+  height: 100px;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+}
+
+.month-title {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-align: center;
+}
+
+.month-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.month-button {
+  background-color: #222;
+  color: white;
+  border: 2px solid white;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.month-button:hover {
+  background-color: white;
+  color: black;
+}
+
+.month-button.selected {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  transform: scale(1.05);
 }

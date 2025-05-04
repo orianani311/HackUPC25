@@ -28,13 +28,19 @@ export default function HashtagSelector({ selected, onSelect, onNext }) {
           </button>
         ))}
       </div>
-      <button
-        className={`next-button ${selected.length === 3 ? 'active' : 'disabled'}`}
-        onClick={onNext}
-        disabled={selected.length !== 3}
-      >
-        Next
-      </button>
+      <div className="navigation-buttons">
+  <button className="back-button" onClick={() => window.history.back()}>
+    Back
+  </button>
+  <button
+    className={`next-button ${selected.length === 3 ? 'active' : 'disabled'}`}
+    onClick={onNext}
+    disabled={selected.length !== 3}
+  >
+    Next
+  </button>
+</div>
+
     </div>
   );
 }

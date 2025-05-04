@@ -8,7 +8,10 @@
   
   .hashtag-title {
     font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
     margin-bottom: 1.5rem;
+    text-align: center;
   }
   
   .hashtag-grid {
@@ -39,9 +42,9 @@
   }
   
   .hashtag-button.selected {
-    background-color: #fcf88b;
-    color: black;
-    border-color: #fcf88b;
-    transform: scale(1.08);
+    background-color: white;
+    color: #444;
+    border-color: white;
+    transform: scale(1.05);
   }
   
