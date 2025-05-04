@@ -20,17 +20,17 @@ export default function WhiteCardAnswer({ selectedImages, onNext, onBack }) {
         className="navigation-buttons"
         style={{
           display: 'flex',
-          justifyContent: 'flex-end',
+          justifyContent: 'space-between',
           width: '100%',
-          paddingRight: '2rem',
+          padding: '0 2rem',
           marginTop: '2rem',
         }}
       >
         {onBack && (
           <button
             className="next-button"
-            style={{ marginRight: 'auto', marginLeft: '1rem' }}
             onClick={onBack}
+            style={{ padding: '0.6rem 1.5rem' }}
           >
             Back
           </button>
